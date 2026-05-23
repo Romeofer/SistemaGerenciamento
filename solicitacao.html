@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitação — FramptSolutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+
+<body>
+
+    <header class="container">
+        <img src="imagem/logo.png" alt="Logo da empresa" class="logo">
+        <h1>Solicitação e Acompanhamento de Pedidos</h1>
+        <button id="temaBtn" aria-label="Alternar tema">🌙</button>
+        <nav>
+            <ul class="menu">
+                <li class="dropdown dropdown-paginas">
+                    <a href="#" id="btnPaginas">Páginas ▼</a>
+                    <ul class="submenu submenu-paginas" id="submenuPaginas">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="cadastro.html">Cadastro de Produtos</a></li>
+                        <li><a href="solicitacao.html">Solicitação</a></li>
+                        <li><a href="relatorio.html">Relatório</a></li>
+                        <li><a href="painel.html">Painel</a></li>
+                        <li><a href="configuracoes.html">Configurações</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section>
+            <h2>Novo Pedido</h2>
+            <form id="formSolicitacao" class="form-solicitacao">
+                <div class="form-group full">
+                    <label for="produtoIdSolic">Produto</label>
+                    <select id="produtoIdSolic" name="produto" required>
+                        <option value="">Carregando produtos...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="qtdSolic">Quantidade</label>
+                    <input type="number" id="qtdSolic" name="quantidade" placeholder="0" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="solicitanteSolic">Nome do Solicitante</label>
+                    <input type="text" id="solicitanteSolic" name="solicitante" placeholder="Seu nome" required>
+                </div>
+                <div class="form-group full">
+                    <label for="descricaoSolic">Descrição</label>
+                    <textarea id="descricaoSolic" name="descricao" placeholder="Descreva o motivo do pedido"
+                        rows="3"></textarea>
+                </div>
+                <div class="form-group full">
+                    <label>Foto do Laudo Médico</label>
+                    <div class="foto-box" id="laudoBox">📄</div>
+                    <input type="file" id="laudoSolic" name="laudo" accept="image/*,.pdf" style="display:none">
+                    <small style="opacity:0.6;">Obrigatório para medicamentos controlados</small>
+                </div>
+                <div class="form-group full">
+                    <button type="submit" class="btn-enviar-solicitacao">Enviar pedido</button>
+                </div>
+            </form>
+            <p id="msgSolicitacao"></p>
+        </section>
+
+        <section>
+            <h2>Acompanhamento de Pedidos</h2>
+            <div class="filtros" style="margin-bottom:1rem;">
+                <div class="radio-group">
+                    <label><input type="radio" name="filtroStatus" value="todos" checked> Todos</label>
+                    <label><input type="radio" name="filtroStatus" value="Em Analise"> Em Análise</label>
+                    <label><input type="radio" name="filtroStatus" value="Aprovado"> Aprovado</label>
+                    <label><input type="radio" name="filtroStatus" value="Reprovado"> Reprovado</label>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="tabelaPedidos">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Solicitante</th>
+                            <th>Estoque</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="paginacaoPedidos" style="display:flex; gap:0.5rem; margin-top:1rem; align-items:center;">
+                <button class="btn-cancelar" id="btnAnterior" disabled>← Anterior</button>
+                <span id="infoPagina" style="color:var(--texto); font-size:0.9rem;"></span>
+                <button class="btn-cancelar" id="btnProximo">Próximo →</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 FramptSolutions</p>
+        <p>Desenvolvido por: FS</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/notificacao.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/solicitacao.js"></script>
+</body>
+
+</html>
